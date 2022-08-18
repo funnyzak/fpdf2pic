@@ -18,7 +18,7 @@ const helpText = chalkTemplate`
     {bold $} {cyan fpdf2jpg} --help
     {bold $} {cyan fpdf2jpg} --version
     {bold $} {cyan fpdf2jpg} pdf_path
-    {bold $} {cyan fpdf2jpg} [-i {underline pdf_path} [-o{underline output_path}] ]
+    {bold $} {cyan fpdf2jpg} -i {underline pdf_path} [-o{underline output_path}]
 
     By default, {cyan fpdf2jpg} The images will be converted to the folder where the PDF is located when the output path is not specified.
 
@@ -30,7 +30,7 @@ const helpText = chalkTemplate`
 
     -v, --version                       Displays the current version of fpdf2jpg
 
-    -i  --input-pdf-path                The path to the pdf to convert to images
+    -i  --input-pdf-path                The path to the pdf file to convert to images
 
     -o, --output-dir                    the directory to output the images to
 

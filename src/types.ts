@@ -14,7 +14,7 @@ export declare interface Options {
   '--version': boolean;
   '--debug': boolean;
   '--output-dir': Path;
-  '---input-pdf-path': Path;
+  '--input-pdf-path': Path;
 }
 
 // The arguments passed to the CLI (the options + the positional arguments)
