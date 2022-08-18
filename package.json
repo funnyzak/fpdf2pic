@@ -59,9 +59,12 @@
     "chalk-template": "0.4.0",
     "clipboardy": "3.0.0",
     "compression": "1.7.4",
+    "glob": "8.0.3",
+    "globby": "13.1.2",
     "update-check": "1.5.4"
   },
   "devDependencies": {
+    "@types/glob": "7.2.0",
     "@types/node": "18.7.6",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
