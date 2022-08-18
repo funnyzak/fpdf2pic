@@ -1,6 +1,6 @@
 {
   "name": "fpdf2jpg",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A pdf to image tool",
   "type": "module",
   "bin": {
