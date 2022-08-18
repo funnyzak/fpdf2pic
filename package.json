@@ -18,7 +18,7 @@
     "dev": "watch \"pnpm compile\" src",
     "prepublish": "pnpm compile",
     "release": "np",
-    "prepare": "husky install",
+    "prepare": "husky install && pnpm compile",
     "npm:check": "npx npm-check-updates",
     "clean": "npx rimraf node_modules",
     "test": "echo \"Error: no test specified\" && exit 1"
