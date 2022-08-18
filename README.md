@@ -35,4 +35,4 @@ fpdf2jpg -i inputfilepath.pdf -o outputdirpath
 
 ## License
 
-Apache-2.0 License © 2022 [funnyzak](https://github.com/funnyzak)
+MIT License © 2022 [funnyzak](https://github.com/funnyzak)
