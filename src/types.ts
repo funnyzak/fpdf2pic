@@ -14,8 +14,15 @@ export declare interface Options {
   '--version': boolean;
   '--debug': boolean;
   '--output-dir': Path;
-  '--input-pdf-path': Path;
+  '--input-path': Path;
+  '--width': number;
+  '--height': number;
+  '--format': string;
+  '--quality': number;
+  '--density': number;
+  '--compression': string;
 }
+
 
 // The arguments passed to the CLI (the options + the positional arguments)
 export declare type Arguments = Partial<Options> & {

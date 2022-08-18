@@ -61,11 +61,14 @@
     "compression": "1.7.4",
     "glob": "8.0.3",
     "globby": "13.1.2",
+    "pdf-parse": "1.1.1",
+    "pdf2pic": "2.1.4",
     "update-check": "1.5.4"
   },
   "devDependencies": {
     "@types/glob": "7.2.0",
     "@types/node": "18.7.6",
+    "@types/pdf-parse": "1.1.1",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
     "@vitest/coverage-c8": "0.22.1",
@@ -79,6 +82,7 @@
     "lint-staged": "13.0.3",
     "np": "7.6.2",
     "npm-check-updates": "16.0.5",
+    "patch-package": "6.4.7",
     "prettier": "2.7.1",
     "rimraf": "^3.0.2",
     "tsup": "6.2.2",

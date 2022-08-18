@@ -17,6 +17,14 @@
 
 Pdf to image NodeJS command-line tools.
 
+## Prerequisite
+
+* node >= 12.x
+* [graphicsmagick](http://www.graphicsmagick.org/README.html#installation) [[brew](https://formulae.brew.sh/formula/graphicsmagick)]
+* [ghostscript](https://www.ghostscript.com/) [[brew](https://formulae.brew.sh/formula/ghostscript)]
+
+## installation
+
 ```sh
 npm i fpdf2jpg -g
 ```

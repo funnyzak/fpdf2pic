@@ -21,7 +21,7 @@ exports[`utilities/cli > render help text 1`] = `
 
     -v, --version                       Displays the current version of fpdf2jpg
 
-    -i  --input-pdf-path                The path to the pdf to convert to images
+    -i  --input-path                The path to the pdf to convert to images
 
     -o, --output-dir                    the directory to output the images to
 

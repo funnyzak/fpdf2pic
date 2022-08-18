@@ -30,9 +30,23 @@ const helpText = chalkTemplate`
 
     -v, --version                       Displays the current version of fpdf2jpg
 
-    -i  --input-pdf-path                The path to the pdf file to convert to images
+    -i  --input-path                    To convert the PDF file path, you can be a single file or folder path
 
     -o, --output-dir                    the directory to output the images to
+
+    -W, --width                        The width of the image to be generated
+
+    -H, --height                       The height of the image to be generated
+
+    -F, --format                       The format of the image to be generated
+
+    -Q, --quality                      The quality of the image to be generated
+
+    -D, density                        The density of the image to be generated
+
+    -C, --compression                  The compression method of the image to be generated
+
+
 
 `;
 
@@ -54,15 +68,28 @@ export const getHelpText = (): string => helpText;
 const options = {
   '--help': Boolean,
   '--version': Boolean,
-  '--input-pdf-path': String,
+  '--input-path': String,
   '--output-dir': String,
   '--debug': Boolean,
+  '--width': Number,
+  '--height': Number,
+  '--format': String,
+  '--quality': Number,
+  '--density': Number,
+  '--compression': String,
+
   // A list of aliases for the above options.
   '-h': '--help',
   '-d': '--debug',
   '-v': '--version',
-  '-i': '--input-pdf-path',
-  '-o': '--output-dir'
+  '-i': '--input-path',
+  '-o': '--output-dir',
+  '-W': '--width',
+  '-H': '--height',
+  '-F': '--format',
+  '-Q': '--quality',
+  '-D': '--density',
+  '-C': '--compression',
 };
 
 /**
