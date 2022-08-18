@@ -6,7 +6,7 @@
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
-[ci-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2jpg/Node.js%20CI
+[ci-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2jpg/CI
 [ci-url]: https://github.com/funnyzak/fpdf2jpg/actions
 [license-image]: https://img.shields.io/github/license/funnyzak/fpdf2jpg.svg?style=flat-square
 [repository-url]: https://github.com/funnyzak/fpdf2jpg
