@@ -21,7 +21,10 @@
     "prepare": "husky install && pnpm compile",
     "npm:check": "npx npm-check-updates",
     "clean": "npx rimraf node_modules",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:tsc": "tsc --project tsconfig.json",
+    "test:unit": "vitest run --config config/vitest.ts",
+    "test:watch": "vitest watch --config config/vitest.ts",
+    "test": "pnpm test:tsc && pnpm test:unit"
   },
   "repository": {
     "type": "git",
@@ -62,6 +65,7 @@
     "@types/node": "18.7.6",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
+    "@vitest/coverage-c8": "0.22.1",
     "eslint": "8.22.0",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "17.0.0",
