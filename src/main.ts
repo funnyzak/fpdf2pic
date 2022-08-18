@@ -2,19 +2,19 @@
 
 // scr/main.ts
 
-import { cwd as getPwd, exit, env, stdout } from 'node:process';
-import { readFileSync, existsSync, lstatSync } from 'node:fs';
+import { existsSync, lstatSync, mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-import chalk from 'chalk';
-import clipboard from 'clipboardy';
-import manifest from '../package.json';
-import { resolve } from './utils/promise';
-import { logger } from './utils/logger';
-import { parseArguments, getHelpText, checkForUpdates } from './utils/cli';
+import { exit } from 'node:process';
+// import chalk from 'chalk';
+// import clipboard from 'clipboardy';
 import { globby } from 'globby';
-import { fromPath } from 'pdf2pic';
 import PDFParse from 'pdf-parse';
+import { fromPath } from 'pdf2pic';
 import type { Options as pdf2picOptions } from 'pdf2pic/dist/types/options';
+import manifest from '../package.json';
+import { checkForUpdates, getHelpText, parseArguments } from './utils/cli';
+import { logger } from './utils/logger';
+import { resolve } from './utils/promise';
 
 // Parse the options passed by the user.
 const [parseError, args] = await resolve(parseArguments());
@@ -82,8 +82,8 @@ if (args['--input-path']) {
     exit(1);
   }
 
-  const if_file = lstatSync(pdf_path).isFile();
-  if (if_file) {
+  const input_path_is_file = lstatSync(pdf_path).isFile();
+  if (input_path_is_file) {
     pdf_file_path_list.push(pdf_path);
   } else {
     pdf_file_path_list = await globby(pdf_path, {
@@ -94,7 +94,7 @@ if (args['--input-path']) {
   }
 
   if (convert_target_dir === '') {
-    convert_target_dir = path.dirname(pdf_path);
+    convert_target_dir = input_path_is_file ? path.dirname(pdf_path) : pdf_path;
   }
 
   logger.info(`Convert output dir path: ${convert_target_dir}`);
@@ -106,17 +106,21 @@ if (args['--input-path']) {
     let pdf_data_buffer = readFileSync(_pdf);
     const parse_data = await PDFParse(pdf_data_buffer);
 
+    const single_pdf_out_dir = path.join(
+      convert_target_dir,
+      path.basename(_pdf, '.pdf')
+    );
+    mkdirSync(single_pdf_out_dir);
+
     const storeAsImage = fromPath(_pdf, {
       ...pdf_convert_options,
-      savePath: convert_target_dir
+      saveFilename: path.basename(_pdf, '.pdf'),
+      savePath: single_pdf_out_dir
     });
 
     for (let i = 1; i <= parse_data.numpages; i++) {
-      storeAsImage(i).then((resolve) => {
-        console.log('Page ${i} is now converted as image');
-
-        return resolve;
-      });
+      await storeAsImage(i);
+      logger.log(`Page ${i} is now converted as image.`);
     }
   }
 }

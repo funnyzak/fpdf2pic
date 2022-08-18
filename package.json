@@ -59,12 +59,14 @@
     "chalk-template": "0.4.0",
     "clipboardy": "3.0.0",
     "compression": "1.7.4",
+    "globby": "13.1.2",
     "pdf-parse": "1.1.1",
     "pdf2pic": "2.1.4",
     "update-check": "1.5.4"
   },
   "devDependencies": {
     "@types/node": "18.7.6",
+    "@types/pdf-parse": "1.1.1",
     "@typescript-eslint/eslint-plugin": "5.33.1",
     "@typescript-eslint/parser": "5.33.1",
     "@vitest/coverage-c8": "0.22.1",
