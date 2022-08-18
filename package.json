@@ -1,0 +1,110 @@
+{
+  "name": "fpdf2jpg",
+  "version": "0.0.1",
+  "description": "A pdf to image tool",
+  "type": "module",
+  "bin": {
+    "fpdf2jpg": "./build/main.js"
+  },
+  "files": [
+    "build/"
+  ],
+  "scripts": {
+    "start": "node ./build/main.js",
+    "lint:code": "eslint --max-warnings 0 src/**/*.ts",
+    "lint:style": "prettier --check 'src/**/*.ts'",
+    "lint": "pnpm lint:code && pnpm lint:style",
+    "compile": "tsup ./src/main.ts",
+    "dev": "watch \"pnpm compile\" src",
+    "prepublish": "pnpm compile",
+    "release": "np",
+    "prepare": "husky install",
+    "npm:check": "npx npm-check-updates",
+    "clean": "npx rimraf node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/funnyzak/fpdf2jpg.git"
+  },
+  "keywords": [
+    "pdf",
+    "funnyzak",
+    "leon",
+    "jpg",
+    "fpdf2jpg",
+    "convert",
+    "cli",
+    "npm",
+    "jpg",
+    "node"
+  ],
+  "engines": {
+    "node": ">= 12"
+  },
+  "author": "Leon (silenceace@gmail.com)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/funnyzak/fpdf2jpg/issues"
+  },
+  "homepage": "https://github.com/funnyzak/fpdf2jpg#readme",
+  "dependencies": {
+    "arg": "5.0.2",
+    "boxen": "7.0.0",
+    "c8": "7.12.0",
+    "chalk": "5.0.1",
+    "chalk-template": "0.4.0",
+    "clipboardy": "3.0.0",
+    "compression": "1.7.4",
+    "update-check": "1.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.6",
+    "@typescript-eslint/eslint-plugin": "5.33.1",
+    "@typescript-eslint/parser": "5.33.1",
+    "eslint": "8.22.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.0.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "np": "7.6.2",
+    "npm-check-updates": "16.0.5",
+    "prettier": "2.7.1",
+    "rimraf": "^3.0.2",
+    "tsup": "6.2.2",
+    "typescript": "4.7.4",
+    "vitest": "0.22.0",
+    "watch": "1.0.2"
+  },
+  "np": {
+    "yarn": false,
+    "contents": ".",
+    "branch": "main",
+    "releaseDraft": true
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --ignore-unknown --write"
+    ],
+    "source/**/*.ts": [
+      "eslint --max-warnings 0 --fix",
+      "vitest related --run"
+    ],
+    "tests": [
+      "vitest --run"
+    ]
+  },
+  "tsup": {
+    "target": "esnext",
+    "format": [
+      "esm"
+    ],
+    "outDir": "./build/"
+  }
+}

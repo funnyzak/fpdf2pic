@@ -1,0 +1,41 @@
+{
+  "root": true,
+  "globals": {
+  },
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "import"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript/base",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "arrowParens": "always"
+      }
+    ],
+    "@typescript-eslint/no-var-requires": [
+      "warn"
+    ]
+  }
+}

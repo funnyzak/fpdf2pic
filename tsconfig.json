@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noImplicitAny": true,
+    "lib": [
+      "es2020"
+    ],
+    "moduleResolution": "node",
+    "module": "esnext",
+    "target": "es2020",
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./build",
+    "declaration": false,
+    "typeRoots": [
+      "./node_modules/@types/",
+      "./types"
+    ],
+  },
+  "include": [
+    "types/**/*.d.ts",
+    "./src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "build"
+  ]
+}
