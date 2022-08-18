@@ -18,7 +18,7 @@
     "dev": "watch \"npm run compile\" src",
     "prepublish": "npm run compile",
     "release": "np",
-    "prepare": "husky install && npm run compile",
+    "prepare": "husky install && patch-package && npm run compile",
     "npm:check": "npx npm-check-updates",
     "clean": "npx rimraf node_modules",
     "test:tsc": "tsc --project tsconfig.json",
@@ -59,6 +59,8 @@
     "chalk-template": "0.4.0",
     "clipboardy": "3.0.0",
     "compression": "1.7.4",
+    "pdf-parse": "1.1.1",
+    "pdf2pic": "2.1.4",
     "update-check": "1.5.4"
   },
   "devDependencies": {
@@ -76,6 +78,7 @@
     "lint-staged": "13.0.3",
     "np": "7.6.2",
     "npm-check-updates": "16.0.5",
+    "patch-package": "6.4.7",
     "prettier": "2.7.1",
     "rimraf": "^3.0.2",
     "tsup": "6.2.2",
