@@ -15,7 +15,7 @@ afterEach(() => {
 });
 
 
-describe('utilities/cli', () => {
+describe('utils/cli', () => {
   // Make sure the help message remains the same. If we are changing the help
   // message, then make sure to run `vitest` with the `--update-snapshot` flag.
   test('render help text', () => expect(getHelpText()).toMatchSnapshot());

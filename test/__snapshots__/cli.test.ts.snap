@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`utilities/cli > render help text 1`] = `
+exports[`utils/cli > render help text 1`] = `
 "
   [1m[36mfpdf2jpg[39m[22m - A pdf to image tool
 
@@ -9,7 +9,7 @@ exports[`utilities/cli > render help text 1`] = `
     [1m$[22m [36mfpdf2jpg[39m --help
     [1m$[22m [36mfpdf2jpg[39m --version
     [1m$[22m [36mfpdf2jpg[39m pdf_path
-    [1m$[22m [36mfpdf2jpg[39m [-i [4mpdf_path[24m [-o[4moutput_path[24m] ]
+    [1m$[22m [36mfpdf2jpg[39m -i [4mpdf_path[24m [-o[4moutput_path[24m]
 
     By default, [36mfpdf2jpg[39m The images will be converted to the folder where the PDF is located when the output path is not specified.
 
@@ -21,9 +21,23 @@ exports[`utilities/cli > render help text 1`] = `
 
     -v, --version                       Displays the current version of fpdf2jpg
 
-    -i  --input-path                The path to the pdf to convert to images
+    -i  --input-path                    To convert the PDF file path, you can be a single file or folder path
 
     -o, --output-dir                    the directory to output the images to
+
+    -W, --width                        The width of the image to be generated
+
+    -H, --height                       The height of the image to be generated
+
+    -F, --format                       The format of the image to be generated
+
+    -Q, --quality                      The quality of the image to be generated
+
+    -D, density                        The density of the image to be generated
+
+    -C, --compression                  The compression method of the image to be generated
+
+
 
 "
 `;
