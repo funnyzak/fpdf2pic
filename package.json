@@ -58,6 +58,7 @@
     "chalk": "5.0.1",
     "chalk-template": "0.4.0",
     "clipboardy": "3.0.0",
+    "command-exists": "1.2.9",
     "compression": "1.7.4",
     "globby": "13.1.2",
     "pdf-page-counter": "1.0.3",
