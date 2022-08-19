@@ -23,6 +23,8 @@
 
 A command line tool for converting PDF to images.
 
+![preview](public/preview.png)
+
 ## Prerequisite
 
 * [node >= 14.x](http://nodejs.cn/download/)
