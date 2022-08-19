@@ -26,7 +26,7 @@ A command line tool for converting PDF to images.
 
 ## Prerequisite
 
-* [node >= 12.x](http://nodejs.cn/download/)
+* [node >= 14.x](http://nodejs.cn/download/)
 * [graphicsmagick](http://www.graphicsmagick.org/README.html#installation)
 * [ghostscript](https://www.ghostscript.com/)
 
