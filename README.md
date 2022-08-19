@@ -46,7 +46,7 @@ fpdf2pic -h
 fpdf2pic -i inputfilepath.pdf -o outputdirpath
 ```
 
-## help
+## Help
 
     By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
 
@@ -75,7 +75,7 @@ fpdf2pic -i inputfilepath.pdf -o outputdirpath
     -D, --density                       The density of the image to be converted, eg: -D 300
 
     -C, --compression                   The compression method of the image to be converted, eg: -C jpeg
-    
+
 
 ## FAQ
 
