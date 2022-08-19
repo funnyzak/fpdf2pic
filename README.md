@@ -1,10 +1,9 @@
-# fpdf2pic [![Build Status][build-status-image]][build-status]
+# fpdf2pic [![Build Status][build-status-image]][build-status] [![Sourcegraph][sg-image]][sg-url]
 
 [![license][license-image]][repository-url]
 [![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
 [![NPM version][npm-image]][npm-url]
 [![Release Date][rle-image]][rle-url]
-[![Sourcegraph][sg-image]][sg-url]
 [![GitHub repo size][repo-size-image]][repository-url]
 [![npm download][download-image]][download-url]
 
