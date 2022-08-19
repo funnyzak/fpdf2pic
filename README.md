@@ -5,7 +5,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Release Date][rle-image]][rle-url]
 [![GitHub repo size][repo-size-image]][repository-url]
-[![npm download][download-image]][download-url]
+<!-- [![npm download][download-image]][download-url] -->
 
 [repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/fpdf2pic
 [build-status-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2pic/CI
