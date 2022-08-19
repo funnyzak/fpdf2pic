@@ -1,6 +1,6 @@
-# fpdf2pic [![Build Status][build-status-image]][build-status] [![Sourcegraph][sg-image]][sg-url]
-
+# fpdf2pic [![Build Status][build-status-image]][build-status]
 [![license][license-image]][repository-url]
+[![Sourcegraph][sg-image]][sg-url]
 [![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
 [![NPM version][npm-image]][npm-url]
 [![Release Date][rle-image]][rle-url]
@@ -40,11 +40,14 @@ npm i fpdf2pic -g
 ## Usage
 
 ```sh
-# show help
+# Show help
 fpdf2pic -h
 
-# Convert a PDF to images
-fpdf2pic -i inputfilepath.pdf -o outputdirpath
+# Convert a single PDF to the output directory
+fpdf2pic -i ./test.pdf -o ./tmp/output_dir
+
+# All PDF files to the output directory in the conversion directory
+fpdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
 ```
 
 ## Help
@@ -84,7 +87,7 @@ fpdf2pic -i inputfilepath.pdf -o outputdirpath
 
 See [installation](http://www.graphicsmagick.org/README.html#installation).
 
-Homebrew: **brew install graphicsmagick**
+ In Mac OS X, you can simply use Homebrew and do: `brew install graphicsmagick`
 
 ## Author
 
