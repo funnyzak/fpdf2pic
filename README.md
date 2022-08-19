@@ -1,9 +1,10 @@
 # fpdf2pic [![Build Status][build-status-image]][build-status]
 
 [![license][license-image]][repository-url]
+[![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
+[![NPM version][npm-image]][npm-url]
 [![Release Date][rle-image]][rle-url]
 [![Sourcegraph][sg-image]][sg-url]
-[![NPM version][npm-image]][npm-url]
 [![GitHub repo size][repo-size-image]][repository-url]
 [![npm download][download-image]][download-url]
 
@@ -44,6 +45,37 @@ fpdf2pic -h
 # Convert a PDF to images
 fpdf2pic -i inputfilepath.pdf -o outputdirpath
 ```
+
+## help
+
+    By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
+
+    The following options are available:
+
+    -h, --help                          Shows this help message
+
+    -d, --debug                         Show debugging information
+
+    -v, --version                       Displays the current version of fpdf2pic
+
+    -i, --input-path                    To convert the PDF file path, you can be a single file or folder path
+
+    -o, --output-dir                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
+
+    -P, --page-range                    The page range to convert,  eg: -P 1,3、 -P 1
+
+    -W, --width                         The max width of the image to be converted, eg: -W 1024
+
+    -H, --height                        The max height of the image to be converted, eg: -H 768
+
+    -F, --format                        The format of the image to be converted, eg: -F png
+
+    -Q, --quality                       The quality of the image to be converted, eg: -Q 80
+
+    -D, --density                       The density of the image to be converted, eg: -D 300
+
+    -C, --compression                   The compression method of the image to be converted, eg: -C jpeg
+    
 
 ## FAQ
 
