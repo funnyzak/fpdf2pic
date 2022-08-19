@@ -8,7 +8,7 @@ import { exit } from 'node:process';
 // import chalk from 'chalk';
 // import clipboard from 'clipboardy';
 import { globby } from 'globby';
-import PDFParse from 'pdf-parse';
+import PDFPageCounter from 'pdf-page-counter';
 import { fromPath } from 'pdf2pic';
 import type { Options as pdf2picOptions } from 'pdf2pic/dist/types/options';
 import manifest from '../package.json';
@@ -104,13 +104,16 @@ if (args['--input-path']) {
     logger.log('current pdf path: ' + _pdf);
 
     let pdf_data_buffer = readFileSync(_pdf);
-    const parse_data = await PDFParse(pdf_data_buffer);
+    const parse_data = await PDFPageCounter(pdf_data_buffer);
 
     const single_pdf_out_dir = path.join(
       convert_target_dir,
       path.basename(_pdf, '.pdf')
     );
-    mkdirSync(single_pdf_out_dir);
+
+    if (!existsSync(single_pdf_out_dir)) {
+      mkdirSync(single_pdf_out_dir);
+    }
 
     const storeAsImage = fromPath(_pdf, {
       ...pdf_convert_options,
