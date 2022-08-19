@@ -84,6 +84,8 @@ fpdf2pic -i inputfilepath.pdf -o outputdirpath
 
 See [installation](http://www.graphicsmagick.org/README.html#installation).
 
+Homebrew: **brew install graphicsmagick**
+
 ## Author
 
 | [![twitter/funnyzak](https://s.gravatar.com/avatar/c2437e240644b1317a4a356c6d6253ee?s=70)](https://twitter.com/funnyzak 'Follow @funnyzak on Twitter') |
