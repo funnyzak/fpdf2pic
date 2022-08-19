@@ -11,42 +11,41 @@ import type { Arguments } from '../types';
 
 // The help text for the CLI.
 const helpText = chalkTemplate`
-  {bold.cyan fpdf2pic} - A pdf to image tool
+  {bold.cyan fpdf2pic} - A command line tool for converting PDF to images.
 
   {bold USAGE}
 
     {bold $} {cyan fpdf2pic} --help
     {bold $} {cyan fpdf2pic} --version
-    {bold $} {cyan fpdf2pic} pdf_path
-    {bold $} {cyan fpdf2pic} -i {underline pdf_path} [-o{underline output_path}]
+    {bold $} {cyan fpdf2pic} -i {underline pdf_path} [-o {underline output_path}]
 
     By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
 
-  {bold OPTIONS}
+    The following options are available:
 
-    --help                              Shows this help message
+    {bold -h, --help}                          Shows this help message
 
-    -d, --debug                         Show debugging information
+    {bold -d, --debug}                         Show debugging information
 
-    -v, --version                       Displays the current version of fpdf2pic
+    {bold -v, --version}                       Displays the current version of fpdf2pic
 
-    -i  --input-path                    To convert the PDF file path, you can be a single file or folder path
+    {bold -i, --input-path}                    To convert the PDF file path, you can be a single file or folder path
 
-    -o, --output-dir                    the directory to output the images to
+    {bold -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
 
-    -W, --width                        The width of the image to be generated
+    {bold -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1
 
-    -H, --height                       The height of the image to be generated
+    {bold -W, --width}                         The max width of the image to be converted, eg: -W 1024
 
-    -F, --format                       The format of the image to be generated
+    {bold -H, --height}                        The max height of the image to be converted, eg: -H 768
 
-    -Q, --quality                      The quality of the image to be generated
+    {bold -F, --format}                        The format of the image to be converted, eg: -F png
 
-    -D, density                        The density of the image to be generated
+    {bold -Q, --quality}                       The quality of the image to be converted, eg: -Q 80
 
-    -C, --compression                  The compression method of the image to be generated
+    {bold -D, --density}                       The density of the image to be converted, eg: -D 300
 
-
+    {bold -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg
 
 `;
 
@@ -56,13 +55,6 @@ const helpText = chalkTemplate`
  * @returns The help text shown when the `--help` option is used.
  */
 export const getHelpText = (): string => helpText;
-
-/**
- * Parse and return the endpoints from the given string.
- *
- * @param uriOrPort - The endpoint to listen on.
- * @returns A list of parsed endpoints.
- */
 
 // The options the CLI accepts, and how to parse them.
 const options = {
@@ -77,6 +69,7 @@ const options = {
   '--quality': Number,
   '--density': Number,
   '--compression': String,
+  '--page-range': String,
 
   // A list of aliases for the above options.
   '-h': '--help',
@@ -90,6 +83,7 @@ const options = {
   '-Q': '--quality',
   '-D': '--density',
   '-C': '--compression',
+  '-P': '--page-range',
 };
 
 /**

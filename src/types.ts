@@ -21,6 +21,7 @@ export declare interface Options {
   '--quality': number;
   '--density': number;
   '--compression': string;
+  '--page-range': string;
 }
 
 

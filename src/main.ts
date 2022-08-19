@@ -5,7 +5,9 @@
 import { existsSync, lstatSync, mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { exit } from 'node:process';
-// import chalk from 'chalk';
+import boxen from 'boxen';
+import chalkTemplate from 'chalk-template';
+import chalk from 'chalk';
 // import clipboard from 'clipboardy';
 import { globby } from 'globby';
 import PDFPageCounter from 'pdf-page-counter';
@@ -22,6 +24,9 @@ if (parseError || !args) {
   logger.error(parseError.message);
   exit(1);
 }
+
+// To convert the range of the page
+let pageRange = (args['--page-range'] || '-1').split(',').map((v) => Number(v));
 
 // Check for updates to the package unless the user sets the `NO_UPDATE_CHECK`
 // variable.
@@ -44,13 +49,13 @@ if (args['--help']) {
   exit(0);
 }
 
-// the parent dir path of convert pdf to jpg
-let convert_target_dir = '';
+// Output path
+let output_dir = '';
 
-// pdf path list
-let pdf_file_path_list: string[] = [];
+// PDF file list to be converted
+let pdf_file_list: string[] = [];
 
-// Pdf convert options
+// options for pdf2pic
 let pdf_convert_options: pdf2picOptions = {
   quality: args['--quality'] || 100,
   format: args['--format'] || 'png',
@@ -70,7 +75,7 @@ if (args['--output-dir']) {
       logger.error(`Output directory ${out_dir} cannot be a file.`);
       exit(0);
     }
-    convert_target_dir = out_dir;
+    output_dir = out_dir;
   }
 }
 
@@ -84,46 +89,104 @@ if (args['--input-path']) {
 
   const input_path_is_file = lstatSync(pdf_path).isFile();
   if (input_path_is_file) {
-    pdf_file_path_list.push(pdf_path);
+    pdf_file_list.push(pdf_path);
   } else {
-    pdf_file_path_list = await globby(pdf_path, {
+    pdf_file_list = await globby(pdf_path, {
       expandDirectories: {
         extensions: ['pdf']
       }
     });
   }
 
-  if (convert_target_dir === '') {
-    convert_target_dir = input_path_is_file ? path.dirname(pdf_path) : pdf_path;
+  if (output_dir === '') {
+    output_dir = input_path_is_file ? path.dirname(pdf_path) : pdf_path;
+  }
+}
+
+if (pdf_file_list.length === 0) {
+  logger.error('No PDF file found.');
+  exit(1);
+}
+
+const previewSettingText = chalkTemplate`
+  Conversion preview:
+
+  {bold Output directory:} {cyan ${output_dir}}
+  {bold The file count to be converted:} {cyan ${pdf_file_list.length}}
+  {bold The file to be converted:} {cyan ${pdf_file_list.join(', ')}}
+  {bold Page range:} {cyan ${pageRange[0] === -1 ? 'All' : pageRange}}
+  {bold Convert parameters:} {cyan width: ${
+    pdf_convert_options.width
+  }, height: ${pdf_convert_options.height}, quality: ${
+  pdf_convert_options.quality
+}, format: ${pdf_convert_options.format}, density: ${
+  pdf_convert_options.density
+}, compression: ${pdf_convert_options.compression}}
+`;
+
+logger.log(
+  boxen(previewSettingText, {
+    padding: 1,
+    borderColor: 'green',
+    margin: 1
+  })
+);
+logger.info(chalkTemplate`{bold Start Converting...}`);
+
+for (let i = 0; i < pdf_file_list.length; i++) {
+  const _cur_pdf = pdf_file_list[i];
+  const _cur_pdf_name = path.basename(_cur_pdf, '.pdf');
+
+  const cur_pdf_out_dir = path.join(output_dir, _cur_pdf_name);
+  // Create the current PDF output directory
+  if (!existsSync(cur_pdf_out_dir)) {
+    mkdirSync(cur_pdf_out_dir);
   }
 
-  logger.info(`Convert output dir path: ${convert_target_dir}`);
-  logger.info(`Input pdf paths: ${pdf_file_path_list.join(' ')}`);
+  let pdf_data_buffer = readFileSync(_cur_pdf);
+  const [cur_pdf_parse_error, cur_pdf_parse_data] = await resolve(
+    PDFPageCounter(pdf_data_buffer)
+  );
 
-  for (const _pdf of pdf_file_path_list) {
-    logger.log('current pdf path: ' + _pdf);
+  logger.log(
+    chalkTemplate`\nCurrent PDF(${i + 1}/${
+      pdf_file_list.length
+    }): {cyan ${_cur_pdf}}`
+  );
 
-    let pdf_data_buffer = readFileSync(_pdf);
-    const parse_data = await PDFPageCounter(pdf_data_buffer);
-
-    const single_pdf_out_dir = path.join(
-      convert_target_dir,
-      path.basename(_pdf, '.pdf')
-    );
-
-    if (!existsSync(single_pdf_out_dir)) {
-      mkdirSync(single_pdf_out_dir);
-    }
-
-    const storeAsImage = fromPath(_pdf, {
+  if (!cur_pdf_parse_error) {
+    const storeAsImage = fromPath(_cur_pdf, {
       ...pdf_convert_options,
-      saveFilename: path.basename(_pdf, '.pdf'),
-      savePath: single_pdf_out_dir
+      saveFilename: _cur_pdf_name,
+      savePath: cur_pdf_out_dir
     });
 
-    for (let i = 1; i <= parse_data.numpages; i++) {
-      await storeAsImage(i);
-      logger.log(`Page ${i} is now converted as image.`);
+    for (let i = 1; i <= cur_pdf_parse_data.numpages; i++) {
+      if (pageRange[0] !== -1) {
+        if (pageRange.length > 1) {
+          if (pageRange[0] > i || pageRange[1] < i) {
+            continue;
+          }
+        } else {
+          if (i !== pageRange[0]) continue;
+        }
+      }
+
+      const [store_image_error] = await resolve(storeAsImage(i));
+
+      logger.log(
+        `Converting page ${chalk.bold(i)}/${cur_pdf_parse_data.numpages}...`
+      );
+      if (store_image_error) {
+        logger.error(store_image_error.message);
+      }
     }
+    logger.log(
+      chalkTemplate`${chalk.green(
+        'Done. Save images to :'
+      )} ${cur_pdf_out_dir}`
+    );
+  } else {
+    logger.error(cur_pdf_parse_error.message);
   }
 }
