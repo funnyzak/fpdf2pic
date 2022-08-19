@@ -17,6 +17,18 @@ import manifest from '../package.json';
 import { checkForUpdates, getHelpText, parseArguments } from './utils/cli';
 import { logger } from './utils/logger';
 import { resolve } from './utils/promise';
+import { commandExists } from './utils';
+
+// Determine whether there is installation of GraphicsMagick
+const isGraphicsMagickInstalled = await commandExists('gm');
+if (!isGraphicsMagickInstalled) {
+  logger.log(chalkTemplate`
+  {red Oops !!! GraphicsMagick Need to be installed.}\n
+  {bold In Mac OS X, you can simply use Homebrew and do:}: {cyan brew install graphicsmagick}
+  {bold In Windows, you can see this:}: {cyan http://www.graphicsmagick.org/INSTALL-windows.html}
+  `);
+  exit(0);
+}
 
 // Parse the options passed by the user.
 const [parseError, args] = await resolve(parseArguments());
@@ -181,9 +193,7 @@ for (let i = 0; i < pdf_file_list.length; i++) {
         logger.error(store_image_error.message);
       }
     }
-    logger.log(
-      chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} completed.`
-    );
+    logger.log(chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} completed.`);
   } else {
     logger.error(cur_pdf_parse_error.message);
   }
