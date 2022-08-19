@@ -151,7 +151,7 @@ for (let i = 0; i < pdf_file_list.length; i++) {
   logger.log(
     chalkTemplate`\nCurrent PDF(${i + 1}/${
       pdf_file_list.length
-    }): {cyan ${_cur_pdf}}`
+    }): {cyan ${_cur_pdf}}\nSave images to: {cyan ${cur_pdf_out_dir}}`
   );
 
   if (!cur_pdf_parse_error) {
@@ -182,9 +182,7 @@ for (let i = 0; i < pdf_file_list.length; i++) {
       }
     }
     logger.log(
-      chalkTemplate`${chalk.green(
-        'Done. Save images to :'
-      )} ${cur_pdf_out_dir}`
+      chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} completed.`
     );
   } else {
     logger.error(cur_pdf_parse_error.message);
