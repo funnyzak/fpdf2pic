@@ -1,4 +1,4 @@
-# fpdf2jpg
+# fpdf2pic
 
 [![js-standard-style](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://github.com/feross/standard)
 [![action][ci-image]][ci-url]
@@ -6,16 +6,16 @@
 [![NPM version][npm-image]][npm-url]
 [![npm download][download-image]][download-url]
 
-[ci-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2jpg/CI
-[ci-url]: https://github.com/funnyzak/fpdf2jpg/actions
-[license-image]: https://img.shields.io/github/license/funnyzak/fpdf2jpg.svg?style=flat-square
-[repository-url]: https://github.com/funnyzak/fpdf2jpg
-[npm-image]: https://img.shields.io/npm/v/fpdf2jpg.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/fpdf2jpg
-[download-image]: https://img.shields.io/npm/dm/fpdf2jpg.svg?style=flat-square
-[download-url]: https://npmjs.org/package/fpdf2jpg
+[ci-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2pic/CI
+[ci-url]: https://github.com/funnyzak/fpdf2pic/actions
+[license-image]: https://img.shields.io/github/license/funnyzak/fpdf2pic.svg?style=flat-square
+[repository-url]: https://github.com/funnyzak/fpdf2pic
+[npm-image]: https://img.shields.io/npm/v/fpdf2pic.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/fpdf2pic
+[download-image]: https://img.shields.io/npm/dm/fpdf2pic.svg?style=flat-square
+[download-url]: https://npmjs.org/package/fpdf2pic
 
-Pdf to image NodeJS command-line tools.
+A command line tool for converting PDF to images.
 
 ## Prerequisite
 
@@ -26,13 +26,13 @@ Pdf to image NodeJS command-line tools.
 ## installation
 
 ```sh
-npm i fpdf2jpg -g
+npm i fpdf2pic -g
 ```
 
 ## Usage
 
 ```js
-fpdf2jpg -i inputfilepath.pdf -o outputdirpath
+fpdf2pic -i inputfilepath.pdf -o outputdirpath
 ```
 
 ## Author

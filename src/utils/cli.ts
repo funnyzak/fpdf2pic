@@ -11,16 +11,16 @@ import type { Arguments } from '../types';
 
 // The help text for the CLI.
 const helpText = chalkTemplate`
-  {bold.cyan fpdf2jpg} - A pdf to image tool
+  {bold.cyan fpdf2pic} - A pdf to image tool
 
   {bold USAGE}
 
-    {bold $} {cyan fpdf2jpg} --help
-    {bold $} {cyan fpdf2jpg} --version
-    {bold $} {cyan fpdf2jpg} pdf_path
-    {bold $} {cyan fpdf2jpg} -i {underline pdf_path} [-o{underline output_path}]
+    {bold $} {cyan fpdf2pic} --help
+    {bold $} {cyan fpdf2pic} --version
+    {bold $} {cyan fpdf2pic} pdf_path
+    {bold $} {cyan fpdf2pic} -i {underline pdf_path} [-o{underline output_path}]
 
-    By default, {cyan fpdf2jpg} The images will be converted to the folder where the PDF is located when the output path is not specified.
+    By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
 
   {bold OPTIONS}
 
@@ -28,7 +28,7 @@ const helpText = chalkTemplate`
 
     -d, --debug                         Show debugging information
 
-    -v, --version                       Displays the current version of fpdf2jpg
+    -v, --version                       Displays the current version of fpdf2pic
 
     -i  --input-path                    To convert the PDF file path, you can be a single file or folder path
 
@@ -117,6 +117,6 @@ export const checkForUpdates = async (manifest: object): Promise<void> => {
   // If a newer version is available, tell the user.
   logger.log(
     chalk.bgRed.white(' UPDATE '),
-    `The latest version of \`fpdf2jpg\` is ${update.latest}`
+    `The latest version of \`fpdf2pic\` is ${update.latest}`
   );
 };

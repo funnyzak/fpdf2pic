@@ -2,16 +2,16 @@
 
 exports[`utils/cli > render help text 1`] = `
 "
-  [1m[36mfpdf2jpg[39m[22m - A pdf to image tool
+  [1m[36mfpdf2pic[39m[22m - A pdf to image tool
 
   [1mUSAGE[22m
 
-    [1m$[22m [36mfpdf2jpg[39m --help
-    [1m$[22m [36mfpdf2jpg[39m --version
-    [1m$[22m [36mfpdf2jpg[39m pdf_path
-    [1m$[22m [36mfpdf2jpg[39m -i [4mpdf_path[24m [-o[4moutput_path[24m]
+    [1m$[22m [36mfpdf2pic[39m --help
+    [1m$[22m [36mfpdf2pic[39m --version
+    [1m$[22m [36mfpdf2pic[39m pdf_path
+    [1m$[22m [36mfpdf2pic[39m -i [4mpdf_path[24m [-o[4moutput_path[24m]
 
-    By default, [36mfpdf2jpg[39m The images will be converted to the folder where the PDF is located when the output path is not specified.
+    By default, [36mfpdf2pic[39m The images will be converted to the folder where the PDF is located when the output path is not specified.
 
   [1mOPTIONS[22m
 
@@ -19,7 +19,7 @@ exports[`utils/cli > render help text 1`] = `
 
     -d, --debug                         Show debugging information
 
-    -v, --version                       Displays the current version of fpdf2jpg
+    -v, --version                       Displays the current version of fpdf2pic
 
     -i  --input-path                    To convert the PDF file path, you can be a single file or folder path
 
