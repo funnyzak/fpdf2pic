@@ -11,17 +11,17 @@
     "target": "es2020",
     "allowSyntheticDefaultImports": true,
     "outDir": "./build",
-    "declaration": false,
     "typeRoots": [
-      "./node_modules/@types/",
-      "./types"
-    ],
+      "node_modules/@types",
+      "types"
+    ]
   },
   "include": [
-    "types/**/*.d.ts",
-    "./src/**/*"
+    "src/**/*",
+    "types/**/*"
   ],
   "exclude": [
+    "node_modules",
     "dist",
     "build"
   ]
