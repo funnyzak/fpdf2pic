@@ -23,7 +23,8 @@
 
 A command line tool for converting PDF to images.
 
-![preview](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview.png)
+![show help](https://raw.githubusercontent.com/funnyzak/fpdf2pic/dev/public/preview2.png)
+![converting](https://raw.githubusercontent.com/funnyzak/fpdf2pic/dev/public/preview.png)
 
 ## Prerequisite
 
