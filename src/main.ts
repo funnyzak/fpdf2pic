@@ -62,7 +62,7 @@ if (args['--help']) {
 }
 
 // Output path
-let output_dir = '';
+let output_dir = args['--output-dir'] || '';
 
 // PDF file list to be converted
 let pdf_file_list: string[] = [];
@@ -79,15 +79,14 @@ let pdf_convert_options: pdf2picOptions = {
   compression: args['--compression'] || 'jpeg'
 };
 
-if (args['--output-dir']) {
-  const out_dir = args['--output-dir'];
-
-  if (existsSync(out_dir)) {
-    if (lstatSync(out_dir).isFile()) {
-      logger.error(`Output directory ${out_dir} cannot be a file.`);
+if (output_dir && output_dir !== '') {
+  if (existsSync(output_dir)) {
+    if (lstatSync(output_dir).isFile()) {
+      logger.error(`Output directory ${output_dir} cannot be a file.`);
       exit(0);
     }
-    output_dir = out_dir;
+  } else {
+    mkdirSync(output_dir);
   }
 }
 
