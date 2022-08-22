@@ -3,8 +3,8 @@
 [![Sourcegraph][sg-image]][sg-url]
 [![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
 [![NPM version][npm-image]][npm-url]
-[![Release Date][rle-image]][rle-url]
 [![GitHub repo size][repo-size-image]][repository-url]
+[![Release Date][rle-image]][rle-url]
 [![npm download][download-image]][download-url]
 
 [repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/fpdf2pic
