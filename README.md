@@ -1,11 +1,12 @@
-# fpdf2pic [![Build Status][build-status-image]][build-status]
+# fpdf2pic 
 [![license][license-image]][repository-url]
+[![Build Status][build-status-image]][build-status]
 [![Sourcegraph][sg-image]][sg-url]
 [![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
 [![NPM version][npm-image]][npm-url]
-[![GitHub repo size][repo-size-image]][repository-url]
 [![Release Date][rle-image]][rle-url]
 [![npm download][download-image]][download-url]
+<!--[![GitHub repo size][repo-size-image]][repository-url]-->
 
 [repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/fpdf2pic
 [build-status-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2pic/CI
