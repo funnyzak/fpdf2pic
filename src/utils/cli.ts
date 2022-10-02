@@ -11,42 +11,39 @@ import type { Arguments } from '../types';
 
 // The help text for the CLI.
 const helpText = chalkTemplate`
-  {bold.cyan fpdf2pic} - A command line tool for converting PDF to images.
+{bold.cyan fpdf2pic} - A command line tool for converting PDF to images.
 
-  {bold USAGE}
+{bold USAGE:}
+  {bold $} {cyan pdf2pic} --help
+  {bold $} {cyan pdf2pic} --version
+  {bold $} {cyan pdf2pic} -i {underline pdf_path} [-o {underline output_path}]
 
-    {bold $} {cyan fpdf2pic} --help
-    {bold $} {cyan fpdf2pic} --version
-    {bold $} {cyan fpdf2pic} -i {underline pdf_path} [-o {underline output_path}]
+  By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
 
-    By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
+{bold Options:}
+  {bold -h, --help}                          Shows this help message
 
-    The following options are available:
+  {bold -d, --debug}                         Show debugging information
 
-    {bold -h, --help}                          Shows this help message
+  {bold -v, --version}                       Displays the current version of fpdf2pic
 
-    {bold -d, --debug}                         Show debugging information
+  {bold -i, --input-path}                    To convert the PDF file path, you can be a single file or folder path
 
-    {bold -v, --version}                       Displays the current version of fpdf2pic
+  {bold -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
 
-    {bold -i, --input-path}                    To convert the PDF file path, you can be a single file or folder path
+  {bold -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1
 
-    {bold -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
+  {bold -W, --width}                         The max width of the image to be converted, eg: -W 1024
 
-    {bold -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1
+  {bold -H, --height}                        The max height of the image to be converted, eg: -H 768
 
-    {bold -W, --width}                         The max width of the image to be converted, eg: -W 1024
+  {bold -F, --format}                        The format of the image to be converted, eg: -F png
 
-    {bold -H, --height}                        The max height of the image to be converted, eg: -H 768
+  {bold -Q, --quality}                       The quality of the image to be converted, eg: -Q 80
 
-    {bold -F, --format}                        The format of the image to be converted, eg: -F png
+  {bold -D, --density}                       The density of the image to be converted, eg: -D 300
 
-    {bold -Q, --quality}                       The quality of the image to be converted, eg: -Q 80
-
-    {bold -D, --density}                       The density of the image to be converted, eg: -D 300
-
-    {bold -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg
-
+  {bold -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg
 `;
 
 /**

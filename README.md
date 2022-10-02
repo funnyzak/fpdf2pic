@@ -1,4 +1,4 @@
-# fpdf2pic 
+# fpdf2pic
 [![license][license-image]][repository-url]
 [![Build Status][build-status-image]][build-status]
 [![Sourcegraph][sg-image]][sg-url]
@@ -43,13 +43,13 @@ npm i fpdf2pic -g
 
 ```sh
 # Show help
-fpdf2pic -h
+pdf2pic -h
 
 # Convert a single PDF to the output directory
-fpdf2pic -i ./test.pdf -o ./tmp/output_dir
+pdf2pic -i ./test.pdf -o ./tmp/output_dir
 
 # All PDF files to the output directory in the conversion directory
-fpdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
+pdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
 ```
 
 ## Help
