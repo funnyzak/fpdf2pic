@@ -13,7 +13,7 @@ import type { Arguments } from '../types';
 const helpText = chalkTemplate`
 {bold.cyan fpdf2pic} - A command line tool for converting PDF to images.
 
-{bold USAGE:}
+{bold Usage:}
   {bold $} {cyan pdf2pic} --help
   {bold $} {cyan pdf2pic} --version
   {bold $} {cyan pdf2pic} -i {underline pdf_path} [-o {underline output_path}]
