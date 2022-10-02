@@ -4,7 +4,8 @@
   "description": "A command line tool for converting PDF to images.",
   "type": "module",
   "bin": {
-    "fpdf2pic": "./build/main.js"
+    "fpdf2pic": "./build/main.js",
+    "pdf2pic": "./build/main.js"
   },
   "files": [
     "build/"
