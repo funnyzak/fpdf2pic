@@ -1,6 +1,6 @@
 {
   "name": "fpdf2pic",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "description": "A command line tool for converting PDF to images.",
   "type": "module",
   "bin": {
