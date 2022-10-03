@@ -1,6 +1,6 @@
 {
   "name": "fpdf2pic",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "A command line tool for converting PDF to images.",
   "bin": {
     "fpdf2pic": "--no-warnings ./build/index.js",
