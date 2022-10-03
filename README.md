@@ -57,18 +57,19 @@ pdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
 
 <pre>
 Options:
-  -h, --help                          Shows this help message
-  -d, --debug                         Show debugging information
-  -v, --version                       Displays the current version of fpdf2pic
-  -i, --input-path                    To convert the PDF file path, you can be a single file or folder path
-  -o, --output-dir                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
-  -P, --page-range                    The page range to convert,  eg: -P 1,3、 -P 1
-  -W, --width                         The max width of the image to be converted, eg: -W 1024
-  -H, --height                        The max height of the image to be converted, eg: -H 768
-  -F, --format                        The format of the image to be converted, eg: -F png
-  -Q, --quality                       The quality of the image to be converted, eg: -Q 80
-  -D, --density                       The density of the image to be converted, eg: -D 300
-  -C, --compression                   The compression method of the image to be converted, eg: -C jpeg
+  -h, --help                          Show message.
+  -d, --debug                         Show debugging information.
+  -v, --version                       Show version.
+  -i, --input-path                    To convert the PDF file path, you can be a single file or folder path.
+  -o, --output-dir                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images .
+  -P, --page-range                    The page range to convert,  eg: -P 1,3、 -P 1 .
+  -W, --width                         The max width of the image to be converted, eg: -W 1024 .
+  -H, --height                        The max height of the image to be converted, eg: -H 768 .
+  -F, --format                        The format of the image to be converted, eg: -F png .
+  -Q, --quality                       The quality of the image to be converted, eg: -Q 80 .
+  -D, --density                       The density of the image to be converted, eg: -D 300 .
+  -C, --compression                   The compression method of the image to be converted, eg: -C jpeg .
+
   By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
 </pre>
 

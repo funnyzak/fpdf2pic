@@ -26,3 +26,6 @@ test.js
 .eslintcache
 
 build/
+
+/release
+
