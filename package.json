@@ -3,8 +3,8 @@
   "version": "0.5.2",
   "description": "A command line tool for converting PDF to images.",
   "bin": {
-    "fpdf2pic": "--no-warnings ./build/index.js",
-    "pdf2pic": "--no-warnings ./build/index.js"
+    "fpdf2pic": "./build/index.js",
+    "pdf2pic": "./build/index.js"
   },
   "files": [
     "build/"
