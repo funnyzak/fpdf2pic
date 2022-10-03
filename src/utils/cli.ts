@@ -14,36 +14,26 @@ const helpText = chalkTemplate`
 {bold.cyan fpdf2pic} - A command line tool for converting PDF to images.
 
 {bold Usage:}
-  {bold $} {cyan pdf2pic} --help
-  {bold $} {cyan pdf2pic} --version
-  {bold $} {cyan pdf2pic} -i {underline pdf_path} [-o {underline output_path}]
-
-  By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
+  {cyan pdf2pic} [options]
+  {cyan pdf2pic} --help
+  {cyan pdf2pic} --version
+  {cyan pdf2pic} -i {underline pdf_path} [-o {underline output_path}]
 
 {bold Options:}
   {bold -h, --help}                          Shows this help message
-
   {bold -d, --debug}                         Show debugging information
-
   {bold -v, --version}                       Displays the current version of fpdf2pic
-
   {bold -i, --input-path}                    To convert the PDF file path, you can be a single file or folder path
-
   {bold -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
-
   {bold -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1
-
   {bold -W, --width}                         The max width of the image to be converted, eg: -W 1024
-
   {bold -H, --height}                        The max height of the image to be converted, eg: -H 768
-
   {bold -F, --format}                        The format of the image to be converted, eg: -F png
-
   {bold -Q, --quality}                       The quality of the image to be converted, eg: -Q 80
-
   {bold -D, --density}                       The density of the image to be converted, eg: -D 300
-
   {bold -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg
+
+  By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
 `;
 
 /**

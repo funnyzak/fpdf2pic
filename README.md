@@ -1,15 +1,18 @@
 # fpdf2pic
-[![license][license-image]][repository-url]
+
+A command line tool for converting PDF to images.
+
 [![Build Status][build-status-image]][build-status]
-[![Sourcegraph][sg-image]][sg-url]
+[![license][license-image]][repository-url]
 [![node](https://img.shields.io/node/v/fpdf2pic.svg)](https://nodejs.org/)
 [![NPM version][npm-image]][npm-url]
 [![Release Date][rle-image]][rle-url]
 [![npm download][download-image]][download-url]
 <!--[![GitHub repo size][repo-size-image]][repository-url]-->
+<!-- [![Sourcegraph][sg-image]][sg-url] -->
 
 [repo-size-image]: https://img.shields.io/github/repo-size/funnyzak/fpdf2pic
-[build-status-image]: https://img.shields.io/github/workflow/status/funnyzak/fpdf2pic/CI
+[build-status-image]:  https://github.com/funnyzak/fpdf2pic/actions/workflows/ci.yml/badge.svg
 [build-status]: https://github.com/funnyzak/fpdf2pic/actions
 [license-image]: https://img.shields.io/github/license/funnyzak/fpdf2pic.svg?style=flat-square
 [repository-url]: https://github.com/funnyzak/fpdf2pic
@@ -21,8 +24,6 @@
 [sg-url]: https://sourcegraph.com/github.com/funnyzak/fpdf2pic
 [rle-image]: https://img.shields.io/github/release-date/funnyzak/fpdf2pic.svg
 [rle-url]: https://github.com/funnyzak/fpdf2pic/releases/latest
-
-A command line tool for converting PDF to images.
 
 ![show help](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview2.png)
 ![converting](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview.png)
@@ -54,48 +55,38 @@ pdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
 
 ## Help
 
-    By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
-
-    The following options are available:
-
-    -h, --help                          Shows this help message
-
-    -d, --debug                         Show debugging information
-
-    -v, --version                       Displays the current version of fpdf2pic
-
-    -i, --input-path                    To convert the PDF file path, you can be a single file or folder path
-
-    -o, --output-dir                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
-
-    -P, --page-range                    The page range to convert,  eg: -P 1,3、 -P 1
-
-    -W, --width                         The max width of the image to be converted, eg: -W 1024
-
-    -H, --height                        The max height of the image to be converted, eg: -H 768
-
-    -F, --format                        The format of the image to be converted, eg: -F png
-
-    -Q, --quality                       The quality of the image to be converted, eg: -Q 80
-
-    -D, --density                       The density of the image to be converted, eg: -D 300
-
-    -C, --compression                   The compression method of the image to be converted, eg: -C jpeg
-
+<pre>
+Options:
+  -h, --help                          Shows this help message
+  -d, --debug                         Show debugging information
+  -v, --version                       Displays the current version of fpdf2pic
+  -i, --input-path                    To convert the PDF file path, you can be a single file or folder path
+  -o, --output-dir                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images
+  -P, --page-range                    The page range to convert,  eg: -P 1,3、 -P 1
+  -W, --width                         The max width of the image to be converted, eg: -W 1024
+  -H, --height                        The max height of the image to be converted, eg: -H 768
+  -F, --format                        The format of the image to be converted, eg: -F png
+  -Q, --quality                       The quality of the image to be converted, eg: -Q 80
+  -D, --density                       The density of the image to be converted, eg: -D 300
+  -C, --compression                   The compression method of the image to be converted, eg: -C jpeg
+  By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
+</pre>
 
 ## FAQ
 
-### How to install graphicsmagick?
+### install graphicsmagick
 
 See [installation](http://www.graphicsmagick.org/README.html#installation).
 
  In Mac OS X, you can simply use Homebrew and do: `brew install graphicsmagick`
 
-## Author
+## Contribution
 
-| [![twitter/funnyzak](https://s.gravatar.com/avatar/c2437e240644b1317a4a356c6d6253ee?s=70)](https://twitter.com/funnyzak 'Follow @funnyzak on Twitter') |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [funnyzak](https://yyccme/)                                                                                                                           |
+If you have any questions or suggestions, please feel free to open an issue or pull request.
+
+<a href="https://github.com/funnyzak/fpdf2pic/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=funnyzak/fpdf2pic" />
+</a>
 
 ## License
 
