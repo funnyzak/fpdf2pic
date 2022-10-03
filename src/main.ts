@@ -1,21 +1,20 @@
 #!/usr/bin/env node
 
+import chalk from 'chalk';
+import chalkTemplate from 'chalk-template';
 import { existsSync, lstatSync, mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { exit } from 'node:process';
-import boxen from 'boxen';
-import chalkTemplate from 'chalk-template';
-import chalk from 'chalk';
 // import clipboard from 'clipboardy';
 import { globby } from 'globby';
-import PDFPageCounter from 'pdf-page-counter';
+import { getPdfDocument } from './utils/pdf';
 import { fromPath } from 'pdf2pic';
 import type { Options as pdf2picOptions } from 'pdf2pic/dist/types/options';
 import manifest from '../package.json';
+import { commandExists } from './utils';
 import { checkForUpdates, getHelpText, parseArguments } from './utils/cli';
 import { logger } from './utils/logger';
 import { resolve } from './utils/promise';
-import { commandExists } from './utils';
 
 const run = async (): Promise<void> => {
   // Determine whether there is installation of GraphicsMagick
@@ -44,7 +43,7 @@ const run = async (): Promise<void> => {
     input_path: args['--input-path'],
     width: args['--width'] || undefined,
     height: args['--height'] || undefined,
-    format: args['--format'],
+    format: args['--format'] || 'png',
     quality: args['--quality'] || 100,
     density: args['--density'] || 300,
     compression: args['--compression'] || 'jpeg',
@@ -143,29 +142,22 @@ const run = async (): Promise<void> => {
   }
 
   const previewSettingText = chalkTemplate`
-  Conversion preview:
-
-  {bold Output directory:} {cyan ${output_dir}}
-  {bold The file count to be converted:} {cyan ${pdf_file_list.length}}
-  {bold The file to be converted:} {cyan ${pdf_file_list.join(', ')}}
-  {bold Page range:} {cyan ${pageRange[0] === -1 ? 'All' : pageRange}}
-  {bold Convert parameters:} {cyan width: ${
-    pdf_convert_options.width
-  }, height: ${pdf_convert_options.height}, quality: ${
-    pdf_convert_options.quality
-  }, format: ${pdf_convert_options.format}, density: ${
-    pdf_convert_options.density
-  }, compression: ${pdf_convert_options.compression}}
+{bold Convert options:}
+{bold Output DIR:} {cyan ${output_dir}}
+{bold pdf file count:} {cyan ${pdf_file_list.length}}
+{bold pdf file list:} {cyan ${pdf_file_list.join(', ')}}
+{bold Page range:} {cyan ${pageRange[0] === -1 ? 'All' : pageRange}}
+{bold Convert parameters:} {cyan width: ${pdf_convert_options.width}, height: ${
+    pdf_convert_options.height
+  }, quality: ${pdf_convert_options.quality}, format: ${
+    pdf_convert_options.format
+  }, density: ${pdf_convert_options.density}, compression: ${
+    pdf_convert_options.compression
+  }}
 `;
 
-  logger.log(
-    boxen(previewSettingText, {
-      padding: 1,
-      borderColor: 'green',
-      margin: 1
-    })
-  );
-  logger.log(chalkTemplate`{bold Start Converting...}`);
+  logger.log(previewSettingText);
+  logger.log(chalkTemplate`\n{bold Converting...}`);
 
   for (let i = 0; i < pdf_file_list.length; i++) {
     const _cur_pdf = pdf_file_list[i];
@@ -179,7 +171,7 @@ const run = async (): Promise<void> => {
 
     let pdf_data_buffer = readFileSync(_cur_pdf);
     const [cur_pdf_parse_error, cur_pdf_parse_data] = await resolve(
-      PDFPageCounter(pdf_data_buffer)
+      getPdfDocument(pdf_data_buffer)
     );
 
     logger.log(
@@ -215,11 +207,10 @@ const run = async (): Promise<void> => {
           logger.error(store_image_error.message);
         }
       }
-      logger.log(
-        chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} completed.`
-      );
+      logger.log(chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} done.`);
     } else {
-      logger.error(cur_pdf_parse_error.message);
+      logger.error(`Parse PDF ${_cur_pdf} failed.`);
+      logger.debug(`Error message: ${cur_pdf_parse_error.message}`);
     }
   }
 };
