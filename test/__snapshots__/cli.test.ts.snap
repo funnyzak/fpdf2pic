@@ -15,14 +15,14 @@ exports[`utils/cli > render help text 1`] = `
   [36m-d, --debug[39m                         Show debugging information.
   [36m-v, --version[39m                       Show version.
   [36m-i, --input-path[39m                    To convert the PDF file path, you can be a single file or folder path.
-  [36m-o, --output-dir[39m                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images .
-  [36m-P, --page-range[39m                    The page range to convert,  eg: -P 1,3、 -P 1 .
-  [36m-W, --width[39m                         The max width of the image to be converted, eg: -W 1024 .
-  [36m-H, --height[39m                        The max height of the image to be converted, eg: -H 768 .
-  [36m-F, --format[39m                        The format of the image to be converted, eg: -F png .
-  [36m-Q, --quality[39m                       The quality of the image to be converted, eg: -Q 80 .
-  [36m-D, --density[39m                       The density of the image to be converted, eg: -D 300 .
-  [36m-C, --compression[39m                   The compression method of the image to be converted, eg: -C jpeg .
+  [36m-o, --output-dir[39m                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images.
+  [36m-P, --page-range[39m                    The page range to convert,  eg: -P 1,3、 -P 1.
+  [36m-W, --width[39m                         The max width of the image to be converted, eg: -W 1024.
+  [36m-H, --height[39m                        The max height of the image to be converted, eg: -H 768.
+  [36m-F, --format[39m                        The format of the image to be converted, eg: -F png.
+  [36m-Q, --quality[39m                       The quality of the image to be converted, eg: -Q 80.
+  [36m-D, --density[39m                       The density of the image to be converted, eg: -D 300.
+  [36m-C, --compression[39m                   The compression method of the image to be converted, eg: -C jpeg.
 
   By default, [36mfpdf2pic[39m The images will be converted to the folder where the PDF is located when the output path is not specified.
 "

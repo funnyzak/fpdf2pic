@@ -24,14 +24,14 @@ const helpText = chalkTemplate`
   {cyan -d, --debug}                         Show debugging information.
   {cyan -v, --version}                       Show version.
   {cyan -i, --input-path}                    To convert the PDF file path, you can be a single file or folder path.
-  {cyan -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images .
-  {cyan -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1 .
-  {cyan -W, --width}                         The max width of the image to be converted, eg: -W 1024 .
-  {cyan -H, --height}                        The max height of the image to be converted, eg: -H 768 .
-  {cyan -F, --format}                        The format of the image to be converted, eg: -F png .
-  {cyan -Q, --quality}                       The quality of the image to be converted, eg: -Q 80 .
-  {cyan -D, --density}                       The density of the image to be converted, eg: -D 300 .
-  {cyan -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg .
+  {cyan -o, --output-dir}                    the directory to output the images, The default will convert all pages, eg: -o ./pdf_images.
+  {cyan -P, --page-range}                    The page range to convert,  eg: -P 1,3、 -P 1.
+  {cyan -W, --width}                         The max width of the image to be converted, eg: -W 1024.
+  {cyan -H, --height}                        The max height of the image to be converted, eg: -H 768.
+  {cyan -F, --format}                        The format of the image to be converted, eg: -F png.
+  {cyan -Q, --quality}                       The quality of the image to be converted, eg: -Q 80.
+  {cyan -D, --density}                       The density of the image to be converted, eg: -D 300.
+  {cyan -C, --compression}                   The compression method of the image to be converted, eg: -C jpeg.
 
   By default, {cyan fpdf2pic} The images will be converted to the folder where the PDF is located when the output path is not specified.
 `;

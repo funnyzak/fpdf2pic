@@ -157,7 +157,7 @@ const run = async (): Promise<void> => {
 `;
 
   logger.log(previewSettingText);
-  logger.log(chalkTemplate`\n{bold Converting...}`);
+  logger.log(chalkTemplate`\n{bold PDF2Pic...}`);
 
   for (let i = 0; i < pdf_file_list.length; i++) {
     const _cur_pdf = pdf_file_list[i];
@@ -174,17 +174,18 @@ const run = async (): Promise<void> => {
       getPdfDocument(pdf_data_buffer)
     );
 
+    const current_absolute_path = path.resolve(cur_pdf_out_dir);
     logger.log(
       chalkTemplate`\nCurrent PDF(${i + 1}/${
         pdf_file_list.length
-      }): {cyan ${_cur_pdf}}\nSave images to: {cyan ${cur_pdf_out_dir}}`
+      }): {cyan ${_cur_pdf}}\nSave images to: {cyan ${current_absolute_path}}`
     );
 
     if (!cur_pdf_parse_error) {
       const storeAsImage = fromPath(_cur_pdf, {
         ...pdf_convert_options,
         saveFilename: _cur_pdf_name,
-        savePath: cur_pdf_out_dir
+        savePath: current_absolute_path
       });
 
       for (let i = 1; i <= cur_pdf_parse_data.numpages; i++) {
@@ -201,13 +202,15 @@ const run = async (): Promise<void> => {
         const [store_image_error] = await resolve(storeAsImage(i));
 
         logger.log(
-          `Converting page ${chalk.bold(i)}/${cur_pdf_parse_data.numpages}...`
+          `PDF: ${chalk.cyan(_cur_pdf_name)}, Page ${chalk.bold(i)}/${
+            cur_pdf_parse_data.numpages
+          }, converted.`
         );
         if (store_image_error) {
           logger.error(store_image_error.message);
         }
       }
-      logger.log(chalkTemplate`Convert ${chalk.green(_cur_pdf_name)} done.`);
+      logger.log(chalkTemplate`PDF2Pic ${chalk.green(_cur_pdf)} done.`);
     } else {
       logger.error(`Parse PDF ${_cur_pdf} failed.`);
       logger.debug(`Error message: ${cur_pdf_parse_error.message}`);
