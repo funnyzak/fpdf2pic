@@ -25,9 +25,6 @@ A command line tool for converting PDF to images.
 [rle-image]: https://img.shields.io/github/release-date/funnyzak/fpdf2pic.svg
 [rle-url]: https://github.com/funnyzak/fpdf2pic/releases/latest
 
-![show help](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview2.png)
-![converting](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview.png)
-
 ## Prerequisite
 
 * [node >= 14.x](http://nodejs.cn/download/)
@@ -52,10 +49,11 @@ pdf2pic -i ./test.pdf -o ./tmp/output_dir
 # All PDF files to the output directory in the conversion directory
 pdf2pic -i ./pdf_file_dir -o ./tmp/output_dir
 ```
+After installing it, run `pdf2pic --help` without arguments to see list of options:
 
-## Help
+```console
+fpdf2pic - A command line tool for converting PDF to images.
 
-<pre>
 Usage:
   pdf2pic [options]
   pdf2pic --help
@@ -77,7 +75,12 @@ Options:
   -C, --compression                   The compression method of the image to be converted, eg: -C jpeg.
 
   By default, fpdf2pic The images will be converted to the folder where the PDF is located when the output path is not specified.
-</pre>
+```
+
+## Preview
+
+![show help](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview2.png)
+![converting](https://raw.githubusercontent.com/funnyzak/fpdf2pic/main/public/preview.png)
 
 ## FAQ
 
