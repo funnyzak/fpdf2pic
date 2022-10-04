@@ -10,7 +10,7 @@
     "module": "esnext",
     "target": "es2020",
     "allowSyntheticDefaultImports": true,
-    "outDir": "./build",
+    "outDir": "./dist",
     "typeRoots": [
       "node_modules/@types",
       "types"
