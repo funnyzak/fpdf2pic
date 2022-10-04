@@ -3,18 +3,18 @@
   "version": "0.5.4",
   "description": "A command line tool for converting PDF to images.",
   "bin": {
-    "fpdf2pic": "./build/index.js",
-    "pdf2pic": "./build/index.js"
+    "fpdf2pic": "./dist/index.js",
+    "pdf2pic": "./dist/index.js"
   },
   "files": [
-    "build/"
+    "dist/"
   ],
   "scripts": {
-    "start": "node ./build/index.js",
+    "start": "node ./dist/index.js",
     "lint:code": "eslint --max-warnings 0 src/**/*.ts",
     "lint:style": "prettier --check 'src/**/*.ts'",
     "lint": "npm run lint:code && npm run lint:style",
-    "compile": "ncc build ./src/main.ts --source-map --minify --license LICENSE -o ./build",
+    "compile": "ncc build ./src/main.ts --source-map --minify --license LICENSE -o ./dist",
     "dev": "watch \"npm run compile\" src",
     "prepublish": "npm run compile",
     "release": "np",
@@ -98,10 +98,10 @@
   },
   "pkg": {
     "assets": [
-      "build/**/*.js",
-      "build/**/*.map",
+      "dist/**/*.js",
+      "dist/**/*.map",
       "LICENSE",
-      "build/**/*.cjs"
+      "dist/**/*.cjs"
     ],
     "targets": [
       "node16-linux-x64",

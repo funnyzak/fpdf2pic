@@ -5,7 +5,6 @@ import chalkTemplate from 'chalk-template';
 import { existsSync, lstatSync, mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { exit } from 'node:process';
-// import clipboard from 'clipboardy';
 import { globby } from 'globby';
 import { getPdfDocument } from './utils/pdf';
 import { fromPath } from 'pdf2pic';
