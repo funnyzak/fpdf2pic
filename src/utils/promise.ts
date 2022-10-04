@@ -30,4 +30,4 @@ export const resolve = async <T = unknown, E = Error>(
 /**
  * Promisifies the passed function.
  */
-export { promisify } from 'node:util';
+export { promisify } from 'util';

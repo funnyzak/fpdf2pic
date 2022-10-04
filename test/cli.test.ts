@@ -1,25 +1,20 @@
 // Tests for the CLI part of the project.
 
-import { env } from 'node:process';
+import { env } from 'process';
 import { afterEach, describe, test, expect, vi } from 'vitest';
 
 import manifest from '../package.json';
-import {
-  getHelpText,
-  checkForUpdates,
-} from '../src/utils/cli';
+import { getHelpText, checkForUpdates } from '../src/utils/cli';
 import { logger } from '../src/utils/logger';
 
 afterEach(() => {
   vi.restoreAllMocks();
 });
 
-
 describe('utils/cli', () => {
   // Make sure the help message remains the same. If we are changing the help
   // message, then make sure to run `vitest` with the `--update-snapshot` flag.
   test('render help text', () => expect(getHelpText()).toMatchSnapshot());
-
 
   // Make sure the update message is shown when the current version is not
   // the latest version.
@@ -28,13 +23,13 @@ describe('utils/cli', () => {
 
     await checkForUpdates({
       ...manifest,
-      version: '0.0.0',
+      version: '0.0.0'
     });
 
     expect(consoleSpy).toHaveBeenCalledOnce();
     expect(consoleSpy).toHaveBeenLastCalledWith(
       expect.stringContaining('UPDATE'),
-      expect.stringContaining('latest'),
+      expect.stringContaining('latest')
     );
   });
 
@@ -45,7 +40,7 @@ describe('utils/cli', () => {
 
     await checkForUpdates({
       ...manifest,
-      version: '99.99.99',
+      version: '99.99.99'
     });
 
     expect(consoleSpy).not.toHaveBeenCalled();
@@ -59,7 +54,7 @@ describe('utils/cli', () => {
     env.NO_UPDATE_CHECK = 'true';
     await checkForUpdates({
       ...manifest,
-      version: '0.0.0',
+      version: '0.0.0'
     });
     env.NO_UPDATE_CHECK = undefined;
 

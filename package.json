@@ -44,7 +44,7 @@
     "node"
   ],
   "engines": {
-    "node": ">= 16"
+    "node": ">= 14"
   },
   "author": "Leon (silenceace@gmail.com)",
   "license": "Apache-2.0",
@@ -104,9 +104,9 @@
       "dist/**/*.cjs"
     ],
     "targets": [
-      "node16-linux-x64",
-      "node16-macos-x64",
-      "node16-win-x64"
+      "node14-linux-x64",
+      "node14-macos-x64",
+      "node14-win-x64"
     ],
     "outputPath": "release"
   },

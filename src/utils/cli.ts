@@ -1,6 +1,6 @@
 // CLI-related utility functions.
 
-import { env } from 'node:process';
+import { env } from 'process';
 import chalk from 'chalk';
 import chalkTemplate from 'chalk-template';
 import parseArgv from 'arg';
