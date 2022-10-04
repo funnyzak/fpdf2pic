@@ -13,24 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 14.x, 15.x, 16.x ]
+        node-version: [14.x, 15.x, 16.x]
     steps:
-    -
-      name: Checkout
-      uses: actions/checkout@v2
-    -
-      name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org/'
-        cache: 'npm'
-    -
-      name: Install dependencies
-      run: npm install
-    -
-      name: Code test
-      run: npm run test
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - name: Code test
+        run: npm run test
 
   release:
     name: Release
@@ -41,81 +37,68 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     strategy:
       matrix:
-        node-version: [ 14.x ]
+        node-version: [14.x]
     steps:
-    -
-      name: Checkout
-      uses: actions/checkout@v2
-    -
-      name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org/'
-        cache: 'npm'
-    -
-      name: Install dependencies
-      run: |
-        npm install
-        npm run pkg
-    -
-      name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-    -
-      name: Build changelog
-      id: build_changelog
-      uses: mikepenz/release-changelog-builder-action@v2.9.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        configuration: ".github/config/changelog_configuration.json"
-        ignorePreReleases: "false"
-    -
-      name: Archive Release
-      uses: papeloto/action-zip@v1
-      with:
-        files: build/ READEME.md package.json LICENSE
-        recursive: false
-        dest: ${{ env.DIST_ARCHIVE_NAME }}-${{ steps.get_version.outputs.VERSION }}.zip
-    -
-      name: Create Release
-      uses: softprops/action-gh-release@v1
-      with:
-        body: ${{steps.build_changelog.outputs.changelog}}
-        files:  |
-          ${{ env.DIST_ARCHIVE_NAME }}-${{ steps.get_version.outputs.VERSION }}
-          release/**/*
-      env:
-        GITHUB_TOKEN: ${{ secrets.github_token }}
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'npm'
+      - name: Install dependencies
+        run: |
+          npm install
+          npm run pkg
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - name: Build changelog
+        id: build_changelog
+        uses: mikepenz/release-changelog-builder-action@v2.9.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          configuration: '.github/config/changelog_configuration.json'
+          ignorePreReleases: 'false'
+      - name: Archive Release
+        uses: papeloto/action-zip@v1
+        with:
+          files: build/ READEME.md package.json LICENSE
+          recursive: false
+          dest: ${{ env.DIST_ARCHIVE_NAME }}-${{ steps.get_version.outputs.VERSION }}.zip
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{steps.build_changelog.outputs.changelog}}
+          files: |
+            ${{ env.DIST_ARCHIVE_NAME }}-${{ steps.get_version.outputs.VERSION }}
+            release/**/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.github_token }}
 
   publish-npm:
     name: Publish NPM
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
     steps:
-      -
-        name: Checkout
+      - name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Use Node.js
+      - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 14
           registry-url: 'https://registry.npmjs.org/'
           cache: 'npm'
-      -
-        name: Install dependencies
+      - name: Install dependencies
         run: npm install
-      -
-        name: Code test
+      - name: Code test
         run: npm run test
-      -
-        name: Get the version
+      - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-      -
-        name: Publish to NPM
+      - name: Publish to NPM
         id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
@@ -126,13 +109,11 @@ jobs:
           access: public
           check-version: true
 
-      -
-        if: steps.publish.outputs.type != 'none'
+      - if: steps.publish.outputs.type != 'none'
         run: |
-              echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+          echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
 
-      -
-        name: Push Publish Message
+      - name: Push Publish Message
         uses: funnyzak/pushoo-action@main
         with:
           platforms: ifttt,bark
@@ -149,14 +130,12 @@ jobs:
     needs: [release]
     if: startsWith(github.ref, 'refs/tags/')
     steps:
-      -
-        name: Push Release Message
+      - name: Push Release Message
         uses: funnyzak/pushoo-action@main
         with:
           platforms: ifttt,bark
           tokens: ${{ secrets.PUSH_TOKEN }}
           content: |
             # ${{github.repository}} Released
-          options: '{"bark": { "url": "https://github.com/funnyzak" }}'
+          options: '{"bark": { "url": "https://github.com/${{github.repository}}" }}'
           debug: false
-
