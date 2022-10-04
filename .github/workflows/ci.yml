@@ -8,49 +8,62 @@ on:
       - '*'
   workflow_dispatch:
 jobs:
-  Test:
+  lint-and-test:
+    name: Lint and Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [ 14.x, 15.x, 16.x ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    -
+      name: Checkout
+      uses: actions/checkout@v2
+    -
+      name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org/'
         cache: 'npm'
-    - name: Install dependencies
+    -
+      name: Install dependencies
       run: npm install
-    - name: Code Test
+    -
+      name: Code test
       run: npm run test
 
-  Release:
+  release:
+    name: Release
     env:
       DIST_ARCHIVE_NAME: ${{ github.event.repository.name }}-dist
     runs-on: ubuntu-latest
-    needs: [Test]
+    needs: [lint-and-test]
     if: startsWith(github.ref, 'refs/tags/')
     strategy:
       matrix:
-        node-version: [ 16.x ]
+        node-version: [ 14.x ]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    -
+      name: Checkout
+      uses: actions/checkout@v2
+    -
+      name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org/'
         cache: 'npm'
-    - name: Install dependencies
+    -
+      name: Install dependencies
       run: |
         npm install
         npm run pkg
-    - name: Get the version
+    -
+      name: Get the version
       id: get_version
       run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
-    - name: build changelog
+    -
+      name: Build changelog
       id: build_changelog
       uses: mikepenz/release-changelog-builder-action@v2.9.0
       env:
@@ -58,13 +71,15 @@ jobs:
       with:
         configuration: ".github/config/changelog_configuration.json"
         ignorePreReleases: "false"
-    - name: Archive Release
+    -
+      name: Archive Release
       uses: papeloto/action-zip@v1
       with:
         files: build/ READEME.md package.json LICENSE
         recursive: false
         dest: ${{ env.DIST_ARCHIVE_NAME }}-${{ steps.get_version.outputs.VERSION }}.zip
-    - name: Create Release
+    -
+      name: Create Release
       uses: softprops/action-gh-release@v1
       with:
         body: ${{steps.build_changelog.outputs.changelog}}
@@ -74,17 +89,74 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
 
-  Push:
+  publish-npm:
+    name: Publish NPM
     runs-on: ubuntu-latest
-    needs: [Release]
-    if: startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/v')
     steps:
-      - name: Push Result Message
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org/'
+          cache: 'npm'
+      -
+        name: Install dependencies
+        run: npm install
+      -
+        name: Code test
+        run: npm run test
+      -
+        name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      -
+        name: Publish to NPM
+        id: publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./package.json
+          tag: latest
+          registry: https://registry.npmjs.org/
+          access: public
+          check-version: true
+
+      -
+        if: steps.publish.outputs.type != 'none'
+        run: |
+              echo "Version changed: ${{ steps.publish.outputs.old-version }} => ${{ steps.publish.outputs.version }}"
+
+      -
+        name: Push Publish Message
         uses: funnyzak/pushoo-action@main
         with:
-          platforms: ${{ secrets.PUSH_PLATFORMS }}
+          platforms: ifttt,bark
+          tokens: ${{ secrets.PUSH_TOKEN }}
+          content: |
+            # ${{github.repository}}:${{ steps.publish.outputs.version }} Npm Publish
+            ## Npm Pakcge Link: https://www.npmjs.com/package/${{github.event.repository.name}}
+          options: '{"bark": { "url": "https://www.npmjs.com/package/${{github.event.repository.name}}" }}'
+          debug: false
+
+  push-release-message:
+    name: Push Release Message
+    runs-on: ubuntu-latest
+    needs: [release]
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      -
+        name: Push Release Message
+        uses: funnyzak/pushoo-action@main
+        with:
+          platforms: ifttt,bark
           tokens: ${{ secrets.PUSH_TOKEN }}
           content: |
             # ${{github.repository}} Released
           options: '{"bark": { "url": "https://github.com/funnyzak" }}'
           debug: false
+
