@@ -62,7 +62,7 @@
     "compression": "1.7.4",
     "globby": "13.1.2",
     "pdf2pic": "2.1.4",
-    "pdfjs-dist": "2.1.266",
+    "pdfjs-dist": "2.16.105",
     "update-check": "1.5.4"
   },
   "devDependencies": {
