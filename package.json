@@ -70,7 +70,7 @@
     "@typescript-eslint/eslint-plugin": "5.43.0",
     "@typescript-eslint/parser": "5.41.0",
     "@vercel/ncc": "0.34.0",
-    "@vitest/coverage-c8": "0.25.3",
+    "@vitest/coverage-c8": "0.28.3",
     "c8": "7.12.0",
     "eslint": "8.31.0",
     "eslint-config-airbnb-base": "15.0.0",
